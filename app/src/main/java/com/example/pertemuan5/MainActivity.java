@@ -2,6 +2,7 @@ package com.example.pertemuan5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import com.example.pertemuan5.Database.DataDiri;
 public class MainActivity extends AppCompatActivity {
 
     AppDatabase appDatabase;
-    private Button btnSubmit;
+    private Button btnSubmit, btnRead;
     private EditText etName,etAddress,etGender;
 
     @Override
@@ -21,16 +22,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        appDatabase = AppDatabase.iniDb(getApplicationContext());
+        appDatabase = AppDatabase.initDb(getApplicationContext());
         etName = findViewById(R.id.etName);
         etAddress = findViewById(R.id.etAddress);
         etGender = findViewById(R.id.etGender);
 
+        btnRead = findViewById(R.id.btnRead);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insert();
+            }
+        });
+        btnRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nextActivity();
             }
         });
     }
@@ -55,5 +63,10 @@ public class MainActivity extends AppCompatActivity {
         etName.setText("");
         etAddress.setText("");
         etGender.setText("");
+    }
+
+    public void nextActivity(){
+        Intent intent = new Intent(this,TampilActivity.class);
+        this.startActivity(intent);
     }
 }

@@ -10,7 +10,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract DataDiriDAO dao();
     private static AppDatabase appDatabase;
 
-    public static AppDatabase iniDb(Context context){
+    public static AppDatabase initDb(Context context){
         if (appDatabase == null) {
             appDatabase = Room
                     .databaseBuilder(context, AppDatabase.class, "dbUser")
